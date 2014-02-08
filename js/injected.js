@@ -9,6 +9,7 @@ view.prototype.render = function () {
     return result;
   }
 
+  // Only perform logic once per dropdown to avoid infinite loop.
   elem.addClass('once-only');
 
   // Only show "My Results" if we have at least one, which we can infer from
