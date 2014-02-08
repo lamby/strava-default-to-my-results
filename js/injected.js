@@ -6,7 +6,13 @@ view.prototype.render = function () {
   var result = fn.apply(this, Array.prototype.slice.call(arguments));
 
   if (!elem.hasClass('once-only')) {
-    elem.addClass('once-only').find('.clickable[data-filter=my_results]').click();
+    elem.addClass('once-only');
+
+    // Only show "My Results" if we have at least one, which we can infer from
+    // whether we have a PR listed.
+    if (elem.find('.pr-comparison time').last().text().trim() !== "s") {
+      elem.find('.clickable[data-filter=my_results]').click();
+    }
   }
 
   return result;
